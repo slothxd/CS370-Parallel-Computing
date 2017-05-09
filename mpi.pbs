@@ -1,0 +1,18 @@
+#PBS -S /bin/bash
+#PBS -N cs37060_monte_2_8
+#PBS -l nodes=2:ppn=8
+#PBS -l walltime=0000:02:00
+#PBS -o output.txt
+#PBS -e error.txt
+
+export MPI_HOME=/opt/openmpi
+export PATH=${MPI_HOME}/bin:${PATH}
+export LD_LIBRARY_PATH=${MPI_HOME}/lib:${LD_LIBRARY_PATH}
+export PYTHON_HOME=/share/apps/python3
+export PATH=${PYTHON_HOME}/bin:${PATH}
+
+cd /home/cs37060/lab2
+
+NPROCS=2
+echo $NPROCS procs reserved
+mpirun -np $NPROCS python3 monte.py
